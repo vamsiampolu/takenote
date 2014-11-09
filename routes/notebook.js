@@ -8,15 +8,15 @@ var notes=require('../models/notes');
 var mongoose=require('mongoose');
 var isAuthenticated=require('../auth/isAuthenticated');
 
+nb=new notebook({
+	title:req.body.title,
+	user:mongoose.Types.ObjectId(req.session.passport.user)
+});	
 //a notebook can be created from the home page only(for now)
 router.post('/',isAuthenticated,function(req,res){
 	console.log("Inside the notebook post route");
 	var nb;
-	var _user=mongoose=Types.ObjectId(req.session.passport.user);
-	console.log("User: ");
-	console.log(_user);
-	console.log(req.body);
-	console.log(req.body.title);
+	var _user=mongoose.Types.ObjectId(req.session.passport.user);
 	notebook.find({user:_user,isActive:true},function(err,c){
 		if(err){
 			console.log("Error retrieving the notebooks");
@@ -26,20 +26,12 @@ router.post('/',isAuthenticated,function(req,res){
 		if(!c.length)
 		{
 			console.log("No active notebooks found");
-			nb=new notebook({
-				title:req.body.title,
-				isActive:true,
-				user:mongoose.Types.ObjectId(req.session.passport.user)
-			});		
+			nb.set({isActive:true});		
 		}
 		else
 		{
 			console.log("Retrieved the notebooks");
-			var nb=new notebook({
-				title:req.body.title,
-				isActive:false,
-				user:mongoose.Types.ObjectId(req.session.passport.user)
-			});
+			nb.set({isActive:false});
 		}
 		nb.save(function(err,doc){
 			if(err)
