@@ -1,0 +1,19 @@
+mixin panel_note_select(note,btnText,noEdit,notebooks)
+	.panel.panel-primary.mypanel&attributes({"data-identifier":note._id})
+		.panel-heading
+			span#create-title=	note.title
+			.btn-group.btn-group-sm.pull-right
+				button(type='button',data-toggle='dropdown').btn.btn-warning.dropdown-toggle#notebook-btn
+					| Choose notebook
+					span.caret
+				if notebooks.length
+					ul(role='menu').dropdown-menu#notebook-list
+						each book in notebooks
+							li&attributes({'data-notebook':book._id})
+								a(href='#')= book.title
+				button.btn.btn-success#save-note!=	btnText
+		.panel-body
+			if noEdit
+				p= note.content
+			else
+				textArea(rows='50').form-control#create-note=	note.content

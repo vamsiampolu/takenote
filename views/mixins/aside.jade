@@ -1,0 +1,15 @@
+aside
+	.panel.panel-default
+		.panel-heading= sidebar.title
+			a.btn.btn-sm.btn-primary.notebook-create.pull-right(data-toggle='modal', href='#notebook-modal')
+				span.glyphicon.glyphicon-plus
+		.panel-body		
+			ul.nav.nav-pills.nav-stacked.sidebar-nav.notebook-list
+				each item, i in sidebar.items
+					if item.isActive
+						li.active
+							a(href='#')&attributes({'data-notebook':item._id})= item.title
+					else	
+						li
+							a(href='#')&attributes({'data-notebook':item._id})= item.title
+							

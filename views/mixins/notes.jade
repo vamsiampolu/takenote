@@ -1,0 +1,15 @@
+if notebook.notes.length
+	ul
+		each note in notebook.notes
+			.panel.panel-primary
+				.panel-heading= note.title
+					.btn-group.btn-group-sm.pull-right
+						a.btn.btn-success.open-edit&attributes({"data-id":note._id})(href='#') 
+							span.glyphicon.glyphicon-pencil
+			.panel-body
+				p= note.content
+else
+	.well 
+		p
+			|You have not created any notes yet.
+		a.btn.btn-primary(href="/new") Create Note

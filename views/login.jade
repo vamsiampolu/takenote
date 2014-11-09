@@ -1,0 +1,43 @@
+extends simple
+	
+block nav
+	+navbar
+
+block content
+	.container
+		#loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+			.panel.panel-info
+				.panel-heading
+					.panel-title Sign in
+					.forgot-pwd
+						a(href='#') Forgot Password?
+				.panel-body
+					.col-lg-offset-3
+						form.form-horizontal#login-form(role='form',method='POST',action='/auth/login')
+							.input-group.margin-25
+								span.input-group-addon
+									i.glyphicon.glyphicon-user
+								input#username.form-control-md(type='text',name='username',placeholder='Username',value="")			
+
+							.input-group.margin-25
+								span.input-group-addon
+									i.glyphicon.glyphicon-lock
+								input#password(type='password',name='password',placeholder='Password').form-control-md
+
+							.input-group.align-checkbox
+								.checkbox
+									.label 
+										input#login-remember(type='checkbox',name='remember',value='1') 
+									| Remember me
+
+							.form-group.margin-10
+								.col-sm-12.controls
+									input(type='submit',value='Login').btn.btn-success 
+
+							.form-group
+								.col-sm-12.control
+									.signup-link
+										| Dont have an account?
+										a(href='/auth/signup') Sign up here		
+			
+block scripts

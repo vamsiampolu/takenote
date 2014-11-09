@@ -1,0 +1,10 @@
+extends simple
+
+block nav
+	+navbar
+
+block content
+	+panel_note_select({title:"Add Title Here",content:'',_id:''},'Save',false,notebooks)
+
+block scripts
+	script(src='/javascripts/new_note.js')

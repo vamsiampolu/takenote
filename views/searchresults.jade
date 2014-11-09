@@ -1,0 +1,17 @@
+extends simple
+
+block nav
+	+navbar
+
+
+block content
+	ul.list-group
+		if results.length
+			each result in results
+				li.list-group-item
+					+display_note(result)			
+		else
+			p No results found
+
+block scripts
+	script(src='/javascripts/search_results.js')							

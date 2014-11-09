@@ -1,0 +1,26 @@
+mixin navbar
+	.container-fluid
+		.navbar-header
+			button(type='button',data-toggle='collapse',data-target='#collapseNavbar').navbar-toggle
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a(href='/main').navbar-brand	Take Note
+		.collapse.navbar-collapse#collapseNavbar
+			form.navbar-form.navbar-left(role='search',method='GET',action='/search')
+				.form-group
+					label.sr-only(for='search') 	Search
+					.input-group
+						input.form-control(type='text',placeholder='Search',name='searchBox')#searchBox
+				.form-group
+					button.btn.btn-default(type='submit')
+						i.glyphicon.glyphicon-search
+			ul.nav.navbar-nav.navbar-right
+				if !username
+					li
+						a(href='#')		Login
+				else
+					li
+						a(href='#')=	username
+					li
+						a(href='/auth/logout') Logout			

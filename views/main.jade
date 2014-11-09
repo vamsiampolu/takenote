@@ -1,0 +1,23 @@
+extends simple
+
+block nav
+	+navbar
+
+
+block content
+	.row
+		.col-md-9.col-md-push-3
+			article
+				header
+					h1=	notebook.title
+				section
+					include ./mixins/notes.jade											
+		.col-md-3.col-md-pull-9
+			include ./mixins/aside.jade
+	include ./mixins/modal.jade		
+
+block scripts
+	script(src='https://rawgit.com/jadejs/jade/master/runtime.js')
+	script(src='/javascripts/notes.js')
+	script(src='/javascripts/goto_edit.js')
+			

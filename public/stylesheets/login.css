@@ -1,0 +1,38 @@
+.mainbox {
+  margin-top: 50px;
+}
+.mainbox .forgot-pwd {
+  float: right;
+  font-size: 80%;
+  position: relative;
+  top: -10px;
+}
+.mainbox .panel-body {
+  padding-top: 30px;
+}
+.mainbox .login-alert {
+  display: none;
+}
+.mainbox .align-checkbox {
+  margin-left: 15px;
+}
+.mainbox .margin-25 {
+  margin-bottom: 25px;
+}
+.mainbox .margin-10 {
+  margin-top: 10px;
+}
+.mainbox .signup-link {
+  border-top: 1px solid #888;
+  padding-top: 15px;
+  font-size: 85%;
+}
+#signupbox {
+  margin-top: 50px;
+}
+#signupbox .signin-div {
+  float: right;
+  font-size: 85%;
+  position: relative;
+  top: -15px;
+}

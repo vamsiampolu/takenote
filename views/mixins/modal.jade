@@ -1,0 +1,16 @@
+
+#notebook-modal.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+				h4.modal-title Create Notebook
+			.modal-body
+				form.form-horizontal(role='form')
+					.form-group
+						label.col-sm-2.control-label(for='nb-name') Name
+						.col-sm-10
+							input(type='text',name='nb-name',id='nb-name',placeholder='Name of the notebook')
+					.form-group
+						.col-sm-10.col-sm-offset-8
+							button.btn.btn-primary#nb-submit(type='submit') Submit
