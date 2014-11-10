@@ -1,8 +1,18 @@
 aside
 	.panel.panel-default
 		.panel-heading= sidebar.title
-			a.btn.btn-sm.btn-primary.notebook-create.pull-right(data-toggle='modal', href='#notebook-modal')
-				span.glyphicon.glyphicon-plus
+			ul.nav.pull-right
+				li
+					a.btn.btn-sm.btn-primary.notebook-create(data-toggle='modal', href='#notebook-modal')
+						span.glyphicon.glyphicon-plus
+				li
+					a(href='#',data-toggle='dropdown').dropdown-toggle#nb-settings-btn
+						span.glyphicon.glyphicon-cog
+						span.caret
+					ul(role='menu').dropdown-menu#nb-settings
+						li
+							a(href='#')#nb-default-setting Set default Notebook		
+
 		.panel-body		
 			ul.nav.nav-pills.nav-stacked.sidebar-nav.notebook-list
 				each item, i in sidebar.items

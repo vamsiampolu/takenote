@@ -8,15 +8,14 @@ var notes=require('../models/notes');
 var mongoose=require('mongoose');
 var isAuthenticated=require('../auth/isAuthenticated');
 
-nb=new notebook({
-	title:req.body.title,
-	user:mongoose.Types.ObjectId(req.session.passport.user)
-});	
+nb=new notebook({});	
 //a notebook can be created from the home page only(for now)
 router.post('/',isAuthenticated,function(req,res){
 	console.log("Inside the notebook post route");
-	var nb;
+	
 	var _user=mongoose.Types.ObjectId(req.session.passport.user);
+	nb.set('title',req.body.title);
+	nb.set('user',_user);
 	notebook.find({user:_user,isActive:true},function(err,c){
 		if(err){
 			console.log("Error retrieving the notebooks");
