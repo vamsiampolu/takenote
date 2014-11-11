@@ -12,7 +12,7 @@ var isAuthenticated=require('../auth/isAuthenticated');
 router.post('/',isAuthenticated,function(req,res){
 	console.log("Inside the notebook post route");
 	var nb;
-	var _user=mongoose=Types.ObjectId(req.session.passport.user);
+	var _user=mongoose.Types.ObjectId(req.session.passport.user);
 	console.log("User: ");
 	console.log(_user);
 	console.log(req.body);
@@ -22,7 +22,7 @@ router.post('/',isAuthenticated,function(req,res){
 			console.log("Error retrieving the notebooks");
 			console.error(err);
 		}	
-		
+		console.dir(c);
 		if(!c.length)
 		{
 			console.log("No active notebooks found");
@@ -35,7 +35,7 @@ router.post('/',isAuthenticated,function(req,res){
 		else
 		{
 			console.log("Retrieved the notebooks");
-			var nb=new notebook({
+			nb=new notebook({
 				title:req.body.title,
 				isActive:false,
 				user:mongoose.Types.ObjectId(req.session.passport.user)
