@@ -49,19 +49,42 @@ router.post('/',isAuthenticated,function(req,res){
 	
 });
 
-router.get('/default/:notebook',function(req,res){
-	var _id=req.param('notebook');
-	_id=mongoose.Types.ObjectId(_id);
-	notebook.findByIdAndUpdate(_id,{$set:{isActive:true}},{new:true},function(err,doc){
+router.get('/default/:notebook',isAuthenticated,function(req,res){
+	console.log("Inside the default notebook route");
+	var _id=mongoose.Types.ObjectId(req.param('notebook'));
+	console.log(_id);
+	notebook.update({
+		isActive:true
+	},{
+		$set:{
+			isActive:false
+		}
+	},
+	{multi:true},
+	function(err,docs){
+		if(err)
+			console.error(err);
+		else
+			console.log(docs);
+	});
+	notebook.findByIdAndUpdate(_id,{
+		$set:{
+			isActive:true
+		}
+	},
+	{
+		new:true
+	},
+		function(err,doc){
 		if(err)
 			console.error(err);
 		else
 		{
-			console.log("Set isActive");
+			console.log("Recieved an updated document");
 			console.log(doc);
-			//worry about doing it the ajax way later
-			res.redirect('/main');
-		}	
+
+			res.send(doc);
+		}		
 	});
 });
 

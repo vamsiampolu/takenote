@@ -1,0 +1,24 @@
+//a.btn.btn-primary(data-toggle='modal', href='#nb-select-modal') Trigger modal
+#nb-select-modal.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal')
+					span(aria-hidden='true') &times;
+					span(sr-only) Close
+				h4.modal-title Set Default Notebook
+			.modal-body
+				form(role='form')#nb-defaultForm
+					if sidebar.items.length
+					each item, i in sidebar.items
+						.radio
+							label
+								if item.isActive
+									input(type="radio", name="nb-name", value="#{item._id}",checked=true)
+									= item.title	
+								else
+									input(type="radio", name="nb-name", value="#{item._id}")
+									= item.title	
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal') Close
+				button.btn.btn-primary(type='button')#nb-setDefault Save							
