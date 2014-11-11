@@ -56,3 +56,26 @@ $('#nb-submit').on('click',function(e){
 		$('#notebook-modal').modal('hide');
 	});
 });
+
+//This will help me set a default notebook
+$('#nb-setDefault').on('click',function(e){
+	e.preventDefault();
+	var _id;
+	//find the checked input in the form
+	var $checked=$('#nb-defaultForm').find('input[type=radio]:checked');
+	console.log($checked);
+	if($checked.length)
+	{
+		_id=$checked.val();
+		console.log(_id);
+		$.ajax({
+			type:'GET',
+			url:'/notebook/default/'+_id
+		})
+		.done(function(data){
+			console.log(data);
+			$('#nb-select-modal').modal('hide');
+		})
+	}	
+
+})

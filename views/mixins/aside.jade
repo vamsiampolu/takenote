@@ -1,8 +1,18 @@
 aside
 	.panel.panel-default
 		.panel-heading= sidebar.title
-			a.btn.btn-sm.btn-primary.notebook-create.pull-right(data-toggle='modal', href='#notebook-modal')
-				span.glyphicon.glyphicon-plus
+			ul.nav.nav-pills.pull-right.aside-nav
+				li
+					a.notebook-create(data-toggle='modal', href='#notebook-modal')
+						span.glyphicon.glyphicon-plus
+				li
+					a(href='#',data-toggle='dropdown').dropdown-toggle#nb-settings-btn
+						span.glyphicon.glyphicon-cog
+						span.caret
+					ul(role='menu').dropdown-menu#nb-settings
+						li
+							a(data-toggle='modal', href='#nb-select-modal')#nb-default-setting Set default Notebook		
+
 		.panel-body		
 			ul.nav.nav-pills.nav-stacked.sidebar-nav.notebook-list
 				each item, i in sidebar.items
@@ -11,5 +21,4 @@ aside
 							a(href='#')&attributes({'data-notebook':item._id})= item.title
 					else	
 						li
-							a(href='#')&attributes({'data-notebook':item._id})= item.title
-							
+							a(href='#')&attributes({'data-notebook':item._id})= item.title							
