@@ -83,31 +83,37 @@ router.get('/default/:notebook',isAuthenticated,function(req,res){
 		{
 			console.log("Recieved an updated document");
 			console.log(doc);
-
 			res.send(doc);
 		}		
 	});
 });
 
-router.get('/:notebook',isAuthenticated,function(req,res){
-	var locals={};
-	console.log(req.session.passport.user);
+router.get('/:notebook',isAuthenticated,function(req,res){	var locals={};	console.log(req.session.passport.user);
 	var _id=mongoose.Types.ObjectId(req.param('notebook'));
+	console.log(_id);
 	var _user=mongoose.Types.ObjectId(req.session.passport.user);
 	notebook.findOne({_id:_id,user:_user})
 	.exec(function(err,doc){
 		if(err)
+		{
+			console.log("An error occured when retrieving notbook");
 			console.error(err);
+		}
 		else
 		{
+			console.log("Found the document");
 			console.log(doc._id);
 			notes.find({notebook:doc._id})
 			.exec(function(err,docs){
 				if(err)
-					console.error(err);
-				else
 				{
+					console.log("An error occured when retrieving associated notes");
+					console.error(err);
+				}else
+				{
+					console.log("Retrieved the notes");
 					console.log(docs);
+					
 					locals={
 						title:doc.title,
 						notes:docs
